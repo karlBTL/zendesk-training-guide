@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zendesk Ticket Handling Guide</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for better readability and aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb; /* Light background */
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .section-header {
+            border-bottom: 2px solid #e0e7ff; /* Indigo-100 border */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            color: #4338ca; /* Indigo-700 */
+        }
+        .callout {
+            border-left: 4px solid #f59e0b; /* Amber */
+            background-color: #fffbeb; /* Light Amber */
+            padding: 1rem;
+        }
+        .status-table th {
+            background-color: #eef2ff; /* Indigo-50 */
+            color: #4338ca;
+        }
+        .status-table td:first-child {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mx-auto p-4 sm:p-8">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl font-extrabold text-indigo-800 mb-2">
+                <span class="text-indigo-500">💡</span> Zendesk Ticket Handling Guide
+            </h1>
+            <p class="text-lg text-gray-600">Essential training for CSRs and Light Agents.</p>
+        </header>
+
+        <!-- Communication Section -->
+        <section class="bg-white p-6 rounded-xl shadow-lg mb-8">
+            <h2 class="text-2xl font-semibold section-header mb-4">📝 Communicating on the Ticket</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Public Comment -->
+                <div class="p-4 border border-gray-200 rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Public Comment</h3>
+                    <ul class="list-disc ml-5 space-y-1 text-gray-700">
+                        <li>This is the standard, outward-facing reply that **your customer will see**.</li>
+                        <li>Use for all direct communication (answering questions, asking for details, confirming resolution).</li>
+                        <li>**Used by:** CSRs and Light Agents (as a reader/collaborator).</li>
+                    </ul>
+                </div>
+
+                <!-- Internal Note -->
+                <div class="p-4 border border-gray-200 rounded-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Internal Note (Internal Comment)</h3>
+                    <ul class="list-disc ml-5 space-y-1 text-gray-700">
+                        <li>This comment is **only visible to other agents** and internal team members. **The customer cannot see it.**</li>
+                        <li>Use for: Handing off, sharing sensitive info, documenting internal actions.</li>
+                        <li>**Used by:** CSRs and Light Agents.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Light Agent Restriction Callout -->
+            <div class="callout mt-6 rounded-lg shadow-md">
+                <p class="font-bold text-lg text-amber-700">⚠️ Light Agent Communication Restriction</p>
+                <p class="text-amber-900 mt-1">**Light Agents are ONLY allowed to submit Internal Notes.** They can read Public Comments but cannot submit outward-facing replies to the customer.</p>
+            </div>
+        </section>
+
+        <!-- Status Section -->
+        <section class="bg-white p-6 rounded-xl shadow-lg mb-8">
+            <h2 class="text-2xl font-semibold section-header">⏱️ Managing the Ticket Status</h2>
+            <p class="text-gray-600 mb-4">The status reflects where the ticket is in the workflow. Always ensure the status is accurate!</p>
+            
+            <table class="w-full text-left border-collapse status-table rounded-lg overflow-hidden">
+                <thead>
+                    <tr>
+                        <th class="py-3 px-4 border-b">Status</th>
+                        <th class="py-3 px-4 border-b">Meaning & Action</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    <tr class="hover:bg-gray-50">
+                        <td class="py-3 px-4">New</td>
+                        <td class="py-3 px-4">The ticket has just been created and currently **has no assignee**. This is the starting status.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="py-3 px-4">Open</td>
+                        <td class="py-3 px-4">The ticket is actively being worked on by an agent or waiting for the next action *from an agent*.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="py-3 px-4">Pending</td>
+                        <td class="py-3 px-4">You are **waiting for a response or action from the customer**. Pauses the SLA clock.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="py-3 px-4">On-Hold</td>
+                        <td class="py-3 px-4">You are **waiting for a response or action from a third party or another internal team** (not the customer). Pauses the SLA clock.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="py-3 px-4">Solved</td>
+                        <td class="py-3 px-4">The customer's issue has been fully resolved and the agent has taken the final action.</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="py-3 px-4">Closed</td>
+                        <td class="py-3 px-4">The ticket is permanently archived and **cannot be reopened or replied to**.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Fields and Tools Section -->
+        <section class="bg-white p-6 rounded-xl shadow-lg mb-8">
+            <h2 class="text-2xl font-semibold section-header">🏷️ Fields, Priority, and Automation</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Left Column (Forms, Tags) -->
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Form & Subfields</h3>
+                        <ul class="list-disc ml-5 space-y-1 text-gray-700">
+                            <li>**Form:** The initial classification (e.g., *Billing Inquiry*) that dictates the set of visible fields.</li>
+                            <li>**Subfields:** Additional, granular fields (e.g., *Product Name*) that capture specific data for reporting.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Tags</h3>
+                        <ul class="list-disc ml-5 space-y-1 text-gray-700">
+                            <li>Flexible **keywords/labels** (e.g., `refund_request`) added manually or automatically.</li>
+                            <li>Used to group, filter, and report on tickets *after* initial classification.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Column (Priority, Assignee, Macro) -->
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Priority</h3>
+                        <ul class="list-disc ml-5 space-y-1 text-gray-700">
+                            <li>Indicates the **severity or urgency** (e.g., *Low* to *Urgent*).</li>
+                            <li>Guides agents on which tickets to address first to meet SLAs.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Assignee</h3>
+                        <ul class="list-disc ml-5 space-y-1 text-gray-700">
+                            <li>The specific agent or group **currently responsible** for resolving the ticket.</li>
+                            <li>A ticket should *always* have an assignee when actively worked on.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Macro</h3>
+                        <ul class="list-disc ml-5 space-y-1 text-gray-700">
+                            <li>A **pre-recorded set of actions** applied with one click (inserting replies, setting status, tags, etc.).</li>
+                            <li>Use for quick, consistent, and accurate responses to common questions.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ticket Routing and Procedures Section (New Content) -->
+        <section class="bg-white p-6 rounded-xl shadow-lg mb-8">
+            <h2 class="text-2xl font-semibold section-header">🔄 Ticket Routing and Special Procedures</h2>
+
+            <div class="space-y-6">
+                <!-- Routing Rules -->
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Ticket Assignment & Handling</h3>
+                    <ul class="list-disc ml-5 space-y-3 text-gray-700">
+                        <li>
+                            **Legal Cases:** Assign to **Laurent**. Rafi and Emmerance are included as Light Agents (internal review only).
+                        </li>
+                        <li>
+                            **B2B Inquiries:** Assign directly to **Laurent**.
+                        </li>
+                        
+                        <li>
+                            **General Inquiries (Everything Else):** Assign to the **CSR Group Queue**. Light Agents can provide internal support/documentation.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Special Procedures -->
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2 mt-4">Special Handling & Escalation</h3>
+                    <ul class="list-disc ml-5 space-y-3 text-gray-700">
+                        <li>
+                            **Angry/Upset Customer:** The assigned **CSR** must first attempt to de-escalate the situation. If de-escalation fails, **escalate immediately to Management/Laurel**.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CSR Tasks -->
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2 mt-4">Mandatory CSR Tasks</h3>
+                    <ul class="list-disc ml-5 space-y-3 text-gray-700">
+                        <li>
+                            **Suspended Tickets:** CSRs are responsible for regularly checking the **Suspended Tickets** queue and restoring/deleting tickets as needed.
+                        </li>
+                        <li>
+                            **Language Handling:** **Always reply in the customer's language.** Use an internal AI translation tool (e.g., Google Translate, DeepL) to accurately understand and compose replies.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- End of New Section -->
+
+        <!-- Footer -->
+        <footer class="mt-10 pt-4 border-t border-gray-200 text-center text-gray-500 text-sm">
+            Please refer to the internal documentation for specific workflow policies.
+        </footer>
+    </div>
+
+</body>
+</html>
